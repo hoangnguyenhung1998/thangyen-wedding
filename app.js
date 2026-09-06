@@ -1,7 +1,6 @@
 const CONFIG = {
   weddingAt: '2026-09-20T08:30:00+07:00',
-  rsvpEndpoint: '',
-  officialSongUrl: 'https://www.youtube.com/watch?v=DG6h__b_-iQ'
+  rsvpEndpoint: ''
 };
 
 const galleryIds = [
@@ -13,94 +12,151 @@ const opening = document.getElementById('opening');
 const site = document.getElementById('site');
 const music = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicButton');
-let musicMissing = false;
+
+let observer = null;
+function observeReveals(){
+  const pending = document.querySelectorAll('.reveal:not(.is-visible)');
+  if (!('IntersectionObserver' in window)) {
+    pending.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  if (!observer) {
+    observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    }), { threshold: .1 });
+  }
+  pending.forEach(el => observer.observe(el));
+}
 
 openBtn.addEventListener('click', async () => {
   opening.classList.add('is-open');
   site.classList.remove('is-locked');
-  try { await music.play(); musicBtn.classList.add('is-playing'); }
-  catch { musicMissing = true; }
+  observeReveals();
+  try {
+    await music.play();
+    musicBtn.classList.add('is-playing');
+  } catch (err) {
+    musicBtn.title = 'Chạm biểu tượng nhạc để bật';
+  }
 });
 
 musicBtn.addEventListener('click', async () => {
-  if (musicMissing || !music.querySelector('source')?.getAttribute('src')) {
-    window.open(CONFIG.officialSongUrl, '_blank', 'noopener');
-    return;
+  if (music.paused) {
+    try {
+      await music.play();
+      musicBtn.classList.add('is-playing');
+    } catch (err) {
+      musicBtn.title = 'Trình duyệt đang chặn phát nhạc';
+    }
+  } else {
+    music.pause();
+    musicBtn.classList.remove('is-playing');
   }
-  if (music.paused) { try { await music.play(); musicBtn.classList.add('is-playing'); } catch { window.open(CONFIG.officialSongUrl,'_blank','noopener'); } }
-  else { music.pause(); musicBtn.classList.remove('is-playing'); }
 });
-music.addEventListener('error', () => { musicMissing = true; });
 
 const guest = new URLSearchParams(location.search).get('guest');
+const guestGreeting = document.getElementById('guestGreeting');
+const guestHidden = document.getElementById('guestHidden');
 if (guest) {
-  const safeGuest = guest.trim().slice(0,80);
-  document.getElementById('guestGreeting').textContent = `Thân mời ${safeGuest} đến chung vui cùng Thắng & Yến`;
-  document.getElementById('guestHidden').value = safeGuest;
+  const safeGuest = guest.trim().slice(0, 80);
+  guestGreeting.textContent = `Thân mời ${safeGuest} đến chung vui cùng Thắng & Yến`;
+  guestHidden.value = safeGuest;
 } else {
-  document.getElementById('guestGreeting').textContent = 'Thân mời bạn đến chung vui cùng Thắng & Yến';
+  guestGreeting.textContent = 'Thân mời bạn đến chung vui cùng Thắng & Yến';
 }
 
+const dayEl = document.getElementById('days');
+const hourEl = document.getElementById('hours');
+const minuteEl = document.getElementById('minutes');
+const secondEl = document.getElementById('seconds');
 function tick(){
-  const diff = new Date(CONFIG.weddingAt) - new Date();
-  const d = Math.max(0,diff);
-  const days=Math.floor(d/86400000), hours=Math.floor(d/3600000)%24, mins=Math.floor(d/60000)%60, secs=Math.floor(d/1000)%60;
-  document.getElementById('days').textContent=String(days).padStart(2,'0');
-  document.getElementById('hours').textContent=String(hours).padStart(2,'0');
-  document.getElementById('minutes').textContent=String(mins).padStart(2,'0');
-  document.getElementById('seconds').textContent=String(secs).padStart(2,'0');
+  const d = Math.max(0, new Date(CONFIG.weddingAt) - new Date());
+  dayEl.textContent = String(Math.floor(d / 86400000)).padStart(2, '0');
+  hourEl.textContent = String(Math.floor(d / 3600000) % 24).padStart(2, '0');
+  minuteEl.textContent = String(Math.floor(d / 60000) % 60).padStart(2, '0');
+  secondEl.textContent = String(Math.floor(d / 1000) % 60).padStart(2, '0');
 }
-tick(); setInterval(tick,1000);
+tick();
+setInterval(tick, 1000);
 
 const gallery = document.getElementById('gallery');
 const showMore = document.getElementById('showMore');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
 let visibleCount = 12;
-function thumb(id){ return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`; }
+function thumb(id, size = 1200){ return `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`; }
+function openLightbox(src){
+  lightboxImage.src = src;
+  lightbox.classList.add('is-open');
+  lightbox.setAttribute('aria-hidden', 'false');
+}
 function renderGallery(){
-  gallery.innerHTML='';
-  galleryIds.slice(0,visibleCount).forEach((id,i)=>{
-    const wrap=document.createElement('div'); wrap.className='gallery-item reveal';
-    const img=document.createElement('img'); img.loading='lazy'; img.alt=`Ảnh cưới Thắng và Yến ${i+1}`; img.src=thumb(id);
-    img.addEventListener('click',()=>openLightbox(thumb(id).replace('w1200','w1800')));
-    wrap.appendChild(img); gallery.appendChild(wrap);
+  gallery.innerHTML = '';
+  galleryIds.slice(0, visibleCount).forEach((id, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'gallery-item reveal';
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = `Ảnh cưới Thắng và Yến ${i + 1}`;
+    img.src = thumb(id);
+    img.addEventListener('click', () => openLightbox(thumb(id, 1800)));
+    wrap.appendChild(img);
+    gallery.appendChild(wrap);
   });
-  if(visibleCount>=galleryIds.length) showMore.style.display='none';
+  showMore.style.display = visibleCount >= galleryIds.length ? 'none' : 'flex';
   observeReveals();
 }
-showMore.addEventListener('click',()=>{visibleCount=Math.min(galleryIds.length,visibleCount+12);renderGallery();});
+showMore.addEventListener('click', () => {
+  visibleCount = Math.min(galleryIds.length, visibleCount + 12);
+  renderGallery();
+});
 renderGallery();
-
-const observer = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}}),{threshold:.12});
-function observeReveals(){document.querySelectorAll('.reveal:not(.is-visible)').forEach(el=>observer.observe(el));}
 observeReveals();
 
-const rsvpForm=document.getElementById('rsvpForm');
-const formStatus=document.getElementById('formStatus');
-rsvpForm.addEventListener('submit',async e=>{
+const rsvpForm = document.getElementById('rsvpForm');
+const formStatus = document.getElementById('formStatus');
+rsvpForm.addEventListener('submit', async e => {
   e.preventDefault();
-  const payload=Object.fromEntries(new FormData(rsvpForm).entries());
-  payload.createdAt=new Date().toISOString();
-  if(!CONFIG.rsvpEndpoint){
-    localStorage.setItem('thangyen-rsvp-demo',JSON.stringify(payload));
-    formStatus.textContent='Bản V1 đang ở chế độ xem thử. Dữ liệu đã lưu trên thiết bị; kích hoạt Google Sheet là form sẽ gửi thật.';
+  const payload = Object.fromEntries(new FormData(rsvpForm).entries());
+  payload.createdAt = new Date().toISOString();
+  if (!CONFIG.rsvpEndpoint) {
+    localStorage.setItem('thangyen-rsvp-demo', JSON.stringify(payload));
+    formStatus.textContent = 'Đã lưu xác nhận trên thiết bị. Google Sheet sẽ được nối ở bước tiếp theo.';
     return;
   }
-  formStatus.textContent='Đang gửi xác nhận...';
-  try{
-    await fetch(CONFIG.rsvpEndpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
-    formStatus.textContent='Cảm ơn bạn! Thắng & Yến đã nhận được xác nhận ♥';
+  formStatus.textContent = 'Đang gửi xác nhận...';
+  try {
+    await fetch(CONFIG.rsvpEndpoint, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+    formStatus.textContent = 'Cảm ơn bạn! Thắng & Yến đã nhận được xác nhận ♥';
     rsvpForm.reset();
-  }catch(err){formStatus.textContent='Chưa gửi được. Vui lòng thử lại sau.';}
+  } catch (err) {
+    formStatus.textContent = 'Chưa gửi được. Vui lòng thử lại sau.';
+  }
 });
 
-const qrModal=document.getElementById('qrModal'), qrImage=document.getElementById('qrImage'), qrName=document.getElementById('qrName');
-document.querySelectorAll('.qr-open').forEach(btn=>btn.addEventListener('click',()=>{qrImage.src=btn.dataset.qr;qrName.textContent=btn.dataset.name;qrModal.classList.add('is-open');qrModal.setAttribute('aria-hidden','false')}));
-document.getElementById('closeQr').addEventListener('click',()=>qrModal.classList.remove('is-open'));
-qrModal.addEventListener('click',e=>{if(e.target===qrModal)qrModal.classList.remove('is-open')});
-
-const lightbox=document.getElementById('lightbox'), lightboxImage=document.getElementById('lightboxImage');
-function openLightbox(src){lightboxImage.src=src;lightbox.classList.add('is-open');lightbox.setAttribute('aria-hidden','false')}
-document.getElementById('closeLightbox').addEventListener('click',()=>lightbox.classList.remove('is-open'));
-lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.classList.remove('is-open')});
-
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){qrModal.classList.remove('is-open');lightbox.classList.remove('is-open')}});
+const qrModal = document.getElementById('qrModal');
+const qrImage = document.getElementById('qrImage');
+const qrName = document.getElementById('qrName');
+document.querySelectorAll('.qr-open').forEach(btn => btn.addEventListener('click', () => {
+  qrImage.src = btn.dataset.qr;
+  qrName.textContent = btn.dataset.name;
+  qrModal.classList.add('is-open');
+  qrModal.setAttribute('aria-hidden', 'false');
+}));
+document.getElementById('closeQr').addEventListener('click', () => qrModal.classList.remove('is-open'));
+qrModal.addEventListener('click', e => { if (e.target === qrModal) qrModal.classList.remove('is-open'); });
+document.getElementById('closeLightbox').addEventListener('click', () => lightbox.classList.remove('is-open'));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('is-open'); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    qrModal.classList.remove('is-open');
+    lightbox.classList.remove('is-open');
+  }
+});
