@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap');
 /* V10 overrides: preserve full album photos, polish hero typography and make the two hero photos interactive. */
 .photo-card.back.ring-shot img{object-fit:cover!important;object-position:center 20%!important}
 .photo-card.back,.photo-card.front{overflow:hidden;cursor:pointer;transition:transform .65s cubic-bezier(.2,.75,.2,1),left .65s ease,right .65s ease,top .65s ease,width .65s ease,height .65s ease,box-shadow .65s ease,z-index .01s linear .32s}
@@ -7,17 +8,17 @@
 .photo-stack.is-swapped .photo-card.back{z-index:4!important;transform:rotate(1deg) scale(1.035)!important;box-shadow:0 18px 42px rgba(0,0,0,.16)!important}
 .photo-stack.is-swapped .photo-card.front{z-index:2!important;transform:rotate(-4deg) scale(.97)!important}
 
-/* Balanced Vietnamese names: both lines stay centered and on one line on normal phones. */
-.hero-copy h2{font-family:"Playfair Display",Georgia,serif!important;font-weight:500!important;letter-spacing:.005em!important;line-height:1.08!important}
-.hero-copy h2 .name-line{display:block!important;white-space:nowrap!important;line-height:1.12!important;padding:.12em 0 .18em!important}
-.hero-copy h2 .amp{line-height:1!important;margin:.13em 0 .18em!important}
+/* Balanced Vietnamese names: elegant, centered and single-line on phones. */
+.hero-copy h2{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:600!important;letter-spacing:.012em!important;line-height:1.02!important}
+.hero-copy h2 .name-line{display:block!important;white-space:nowrap!important;line-height:1.08!important;padding:.12em 0 .16em!important}
+.hero-copy h2 .amp{font-family:"Alex Brush",cursive!important;line-height:1!important;margin:.16em 0 .19em!important}
 
 /* Album: masonry using each image's natural ratio; never crop faces/bodies. */
 .gallery-grid{display:block!important;columns:3;column-gap:18px;grid-template-columns:none!important;grid-auto-flow:initial!important}
 .gallery-item,.gallery-style-0,.gallery-style-1,.gallery-style-2,.gallery-style-3,.gallery-style-4{display:inline-block!important;width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:auto!important;grid-column:auto!important;break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 18px!important;background:#f5f8fa;border-radius:10px;overflow:hidden;vertical-align:top}
 .gallery-item img{display:block;width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important}
 
-/* Hero entrance sequence. JS adds .hero-start after opening; fallback remains visible if motion is reduced. */
+/* Hero entrance sequence. */
 .invitation-opened .photo-stack.hero-reveal:not(.is-visible){opacity:0;transform:translateX(-70px) rotate(-1deg)}
 .invitation-opened .hero-copy.hero-reveal:not(.is-visible){opacity:1;transform:none}
 .hero-copy .blue-flower,.hero-copy>.hand,.hero-copy h2,.hero-copy .date-grid,.hero-copy>.hand.small,.hero-copy .place{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
@@ -37,11 +38,11 @@
   .photo-stack.is-swapped .photo-card.back{transform:rotate(1deg) scale(1.035)!important}
   .photo-stack.is-swapped .photo-card.front{transform:rotate(-4deg) scale(.97)!important}
   .hero-copy{padding-left:0!important;padding-right:0!important;overflow:visible!important}
-  .hero-copy h2{font-size:clamp(34px,9.2vw,43px)!important;width:100%!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
-  .hero-copy h2 .name-line{font-size:1em!important;letter-spacing:-.025em!important;white-space:nowrap!important}
-  .hero-copy h2 .amp{font-size:.82em!important}
+  .hero-copy h2{font-size:clamp(32px,8.6vw,40px)!important;width:100%!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
+  .hero-copy h2 .name-line{font-size:1em!important;letter-spacing:-.012em!important;white-space:nowrap!important}
+  .hero-copy h2 .amp{font-size:.88em!important}
   .gallery-grid{columns:2;column-gap:10px}
   .gallery-item,.gallery-style-0,.gallery-style-1,.gallery-style-2,.gallery-style-3,.gallery-style-4{margin-bottom:10px!important}
 }
-@media(max-width:380px){.hero-copy h2{font-size:32px!important}.hero-copy h2 .name-line{letter-spacing:-.035em!important}}
+@media(max-width:380px){.hero-copy h2{font-size:30px!important}.hero-copy h2 .name-line{letter-spacing:-.02em!important}}
 @media(prefers-reduced-motion:reduce){.hero-copy .blue-flower,.hero-copy>.hand,.hero-copy h2,.hero-copy .date-grid,.hero-copy .place{opacity:1!important;transform:none!important;transition:none!important}.photo-card{transition:none!important}}
