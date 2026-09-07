@@ -1,41 +1,47 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#efe5d7" />
-  <meta name="description" content="Thiệp cưới online của Thắng & Yến — 20.09.2026" />
-  <meta property="og:title" content="Thắng & Yến — 20.09.2026" />
-  <meta property="og:description" content="Trân trọng kính mời bạn đến chung vui trong ngày trọng đại của Thắng & Yến." />
-  <meta property="og:type" content="website" />
-  <title>Thắng & Yến — 20.09.2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Italiana&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff"><meta name="description" content="Thiệp cưới Thắng & Yến — 20.09.2026">
+<title>Thắng & Yến — 20.09.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head>
 <body>
-  <div id="opening" class="opening"><div class="opening-bg"></div><div class="opening-shade"></div><div class="opening-content"><p class="eyebrow">WEDDING INVITATION</p><h1>Thắng <span>&</span> Yến</h1><p class="opening-date">20 · 09 · 2026</p><button id="openInvitation" class="btn btn-light">Mở thiệp</button><p class="opening-note">Chạm để mở thiệp và xem lời mời</p></div></div>
-  <button id="musicButton" class="music-button" aria-label="Bật hoặc tắt nhạc" title="Nhạc nền">♪</button>
-  <audio id="bgMusic" loop preload="none"><source src="assets/music/cuoi-nhau-di.mp3" type="audio/mpeg" /></audio>
-  <main id="site" class="site is-locked">
-    <section class="hero section"><div class="hero-photo photo-cover"></div><div class="hero-overlay"></div><div class="hero-content reveal"><p class="eyebrow">SAVE THE DATE</p><h2>Thắng <span>&</span> Yến</h2><p>Chủ nhật · 20 tháng 09 năm 2026</p><div class="hero-line"></div><p class="hero-small">Một ngày đặc biệt · Một hành trình mới</p></div></section>
-    <section class="section intro paper"><div class="ornament">❦</div><p class="eyebrow ink">OUR WEDDING DAY</p><h3 class="script reveal">Trân trọng kính mời</h3><p id="guestGreeting" class="guest-greeting reveal"></p><p class="lead reveal">Có những hành trình trở nên ý nghĩa hơn khi có một người cùng bước. Sau những ngày tháng yêu thương và đồng hành, Thắng & Yến rất hạnh phúc được mời bạn đến chứng kiến và chung vui trong ngày chúng mình chính thức về chung một nhà.</p><div class="couple-names reveal"><span>Bùi Thế Thắng</span><b>♥</b><span>Nguyễn Thị Yến</span></div></section>
-    <section class="section countdown-section"><div class="section-inner"><p class="eyebrow">COUNTING DOWN</p><h3 class="script reveal">Đếm ngược đến ngày chung đôi</h3><div class="countdown reveal" id="countdown"><div><strong id="days">00</strong><span>Ngày</span></div><div><strong id="hours">00</strong><span>Giờ</span></div><div><strong id="minutes">00</strong><span>Phút</span></div><div><strong id="seconds">00</strong><span>Giây</span></div></div></div></section>
-    <section class="section schedule paper"><div class="section-inner"><p class="eyebrow ink">WEDDING SCHEDULE</p><h3 class="script reveal">Lịch cưới</h3><div class="schedule-grid">
-      <article class="event-card reveal"><div class="event-badge">Nhà gái</div><h4>Tiệc thân mật bạn bè</h4><p class="event-time">17:00 · Thứ Bảy</p><p class="event-date">19.09.2026</p><p>Xóm Trường Giang, Thôn Xuân Ấng, Xã Hà Nam, Hải Phòng</p><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.88641929626465,106.46361541748047">Chỉ đường →</a></article>
-      <article class="event-card reveal"><div class="event-badge">Nhà gái</div><h4>Đón khách & tiệc cưới</h4><p class="event-time">08:30 · Chủ nhật</p><p class="event-date">20.09.2026</p><div class="event-divider"></div><h4>Lễ Vu Quy</h4><p class="event-time">10:30</p><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.88641929626465,106.46361541748047">Đến nhà cô dâu →</a></article>
-      <article class="event-card reveal"><div class="event-badge">Nhà trai</div><h4>Đón khách & tiệc cưới</h4><p class="event-time">08:30 · Chủ nhật</p><p class="event-date">20.09.2026</p><div class="event-divider"></div><h4>Lễ Thành Hôn</h4><p class="event-time">12:30</p><p>Xóm 6, Thôn Vị Dương Đoài, Xã Bắc Thái Ninh, tỉnh Hưng Yên</p><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.517039309817367,106.49241291506051">Đến nhà chú rể →</a></article>
-    </div></div></section>
-    <section class="section quote-section"><div class="quote-photo photo-secondary"></div><div class="quote-overlay"></div><blockquote class="reveal">“Từ hôm nay, chúng mình sẽ cùng viết tiếp những ngày bình thường theo một cách thật đặc biệt.”</blockquote></section>
-    <section class="section gallery paper"><div class="section-inner wide"><p class="eyebrow ink">OUR MOMENTS</p><h3 class="script reveal">Khoảnh khắc của chúng mình</h3><div id="gallery" class="gallery-grid"></div><button id="showMore" class="btn btn-outline">Xem thêm ảnh</button></div></section>
-    <section class="section map-section"><div class="section-inner"><p class="eyebrow">LOCATION</p><h3 class="script reveal">Hẹn gặp bạn tại đây</h3><div class="map-grid"><article class="map-card reveal"><span>NHÀ CÔ DÂU</span><h4>Xuân Ấng · Hà Nam · Hải Phòng</h4><p>Xóm Trường Giang, Thôn Xuân Ấng, Xã Hà Nam, Hải Phòng</p><a class="btn btn-light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.88641929626465,106.46361541748047">Mở Google Maps</a></article><article class="map-card reveal"><span>NHÀ CHÚ RỂ</span><h4>Vị Dương Đoài · Bắc Thái Ninh</h4><p>Xóm 6, Thôn Vị Dương Đoài, Xã Bắc Thái Ninh, tỉnh Hưng Yên</p><a class="btn btn-light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.517039309817367,106.49241291506051">Mở Google Maps</a></article></div></div></section>
-    <section class="section rsvp paper" id="rsvp"><div class="section-inner narrow"><p class="eyebrow ink">RSVP</p><h3 class="script reveal">Bạn sẽ đến chung vui cùng chúng mình chứ?</h3><p class="muted reveal">Vui lòng xác nhận để Thắng & Yến chuẩn bị đón tiếp bạn chu đáo hơn.</p><form id="rsvpForm" class="rsvp-form reveal"><label>Họ và tên<input name="name" required placeholder="Nguyễn Văn Nam" /></label><label>Bạn là khách của<select name="side" required><option value="">Chọn nhà</option><option>Nhà trai</option><option>Nhà gái</option><option>Bạn chung</option></select></label><div class="form-row"><label>Xác nhận<select name="attendance" required><option value="">Chọn</option><option value="Tham dự">Tham dự</option><option value="Không tham dự">Không tham dự</option></select></label><label>Số người<input name="guests" type="number" min="1" max="10" value="1" /></label></div><label>Lời nhắn<textarea name="message" rows="4" placeholder="Gửi một lời chúc đến cô dâu chú rể..."></textarea></label><input type="hidden" name="guest" id="guestHidden" /><button class="btn btn-dark" type="submit">Gửi xác nhận</button><p id="formStatus" class="form-status" role="status"></p></form></div></section>
-    <section class="section gift-section"><div class="section-inner narrow"><p class="eyebrow">WEDDING GIFT</p><h3 class="script reveal">Gửi mừng cưới</h3><p class="gift-note reveal">Sự hiện diện và lời chúc của bạn đã là món quà quý giá. Nếu ở xa hoặc muốn gửi lời chúc theo một cách khác, bạn có thể dùng thông tin dưới đây.</p><div class="gift-grid"><article class="gift-card reveal"><p class="eyebrow">CHÚ RỂ</p><h4>Bùi Thế Thắng</h4><p>Vietcombank</p><strong>0211000547039</strong><button class="btn btn-light qr-open" data-qr="assets/groom-qr.png" data-name="Bùi Thế Thắng">Xem mã QR</button></article><article class="gift-card reveal"><p class="eyebrow">CÔ DÂU</p><h4>Nguyễn Thị Yến</h4><p>Agribank</p><strong>8888354529002</strong><button class="btn btn-light qr-open" data-qr="assets/bride-qr.png" data-name="Nguyễn Thị Yến">Xem mã QR</button></article></div></div></section>
-    <footer class="footer"><div class="footer-photo photo-footer"></div><div class="footer-overlay"></div><div class="footer-content reveal"><p class="eyebrow">THANK YOU</p><h3>Thắng <span>&</span> Yến</h3><p>20 · 09 · 2026</p><small>Hẹn gặp bạn trong ngày đặc biệt của chúng mình ♥</small></div></footer>
-  </main>
-  <div id="qrModal" class="modal" aria-hidden="true"><button id="closeQr" class="modal-close" aria-label="Đóng">×</button><div class="modal-card"><p id="qrName" class="eyebrow ink"></p><img id="qrImage" alt="Mã QR mừng cưới" /><p>Quét mã bằng ứng dụng ngân hàng</p></div></div>
-  <div id="lightbox" class="modal lightbox" aria-hidden="true"><button id="closeLightbox" class="modal-close" aria-label="Đóng">×</button><img id="lightboxImage" alt="Ảnh cưới Thắng và Yến" /></div>
-  <script src="app.js"></script>
-</body>
-</html>
+<div id="heartField" class="heart-field" aria-hidden="true"></div>
+<div id="opening" class="opening"><div class="opening-photo"></div><div class="opening-overlay"></div><div class="opening-card"><div class="flower">✿</div><p class="hand">Save the date</p><h1>THẮNG<br><span>&</span><br>YẾN</h1><p class="date-line">20 / 09 / 2026</p><button id="openInvitation" class="pill solid">Mở thiệp</button><small>Chạm để mở thiệp và bắt đầu nhạc</small></div></div>
+<button id="musicButton" class="music-button" aria-label="Bật tắt nhạc">♪</button>
+<audio id="bgMusic" loop preload="none"><source src="assets/music/cuoi-nhau-di.mp3" type="audio/mpeg"></audio>
+<main id="site" class="site is-locked">
+<section class="hero section">
+  <div class="hero-wrap">
+    <div class="photo-stack reveal from-left">
+      <div class="photo-card back"><img src="https://drive.google.com/thumbnail?id=1p9GwZmF0ik5puonJBQE-NRqd-uqY3B6g&sz=w1200" alt="Thắng và Yến"></div>
+      <div class="photo-card front"><img src="https://drive.google.com/thumbnail?id=1r9xWgk2xop17D-sB51hpntKs4ZSIvjw1&sz=w1200" alt="Ảnh cưới Thắng Yến"></div>
+      <div class="tape"></div><div class="sprig">❀</div>
+    </div>
+    <div class="hero-copy reveal from-right"><div class="blue-flower">✿</div><p class="hand">Save the date</p><h2>BÙI THẾ<br>THẮNG<br><span>&</span><br>NGUYỄN THỊ<br>YẾN</h2>
+      <div class="date-grid"><span>CHỦ NHẬT</span><strong>20/09</strong><span>2026</span></div>
+      <p class="hand small">Hôn lễ được tổ chức tại</p><p class="place">Nhà chú rể & nhà cô dâu</p>
+    </div>
+  </div>
+</section>
+<section class="welcome section">
+  <div class="welcome-wrap">
+    <div class="welcome-card reveal from-left"><h3>Và... ngày ấy đã đến.</h3><p>Có những hành trình trở nên ý nghĩa hơn khi có một người cùng bước. Sau những ngày tháng yêu thương và đồng hành, Thắng & Yến rất hạnh phúc được mời bạn đến chứng kiến và chung vui trong ngày chúng mình chính thức về chung một nhà.</p><p id="guestGreeting" class="guest"></p><div class="actions"><a class="pill" href="#rsvp">Xác nhận tham dự</a><a class="pill" href="#gift">Gửi lời chúc</a></div><span class="leaf">❧</span></div>
+    <img class="welcome-photo reveal from-right" src="https://drive.google.com/thumbnail?id=17pz8BdkiOuW5ZiwX6KnNx_-Xx1jyhR4e&sz=w1600" alt="Ảnh cưới">
+  </div><p class="hand section-script reveal zoom">Giới thiệu</p>
+</section>
+<section class="album section"><div class="container"><h3 class="section-title reveal from-top">Album ảnh cưới</h3><div id="gallery" class="gallery-grid"></div><button id="showMore" class="pill reveal zoom">Xem thêm ảnh</button></div></section>
+<section class="events section"><div class="container"><p class="hand section-script reveal from-top">Hôn lễ</p><div class="events-grid">
+  <article class="event reveal from-left"><img src="https://drive.google.com/thumbnail?id=1y4xjf6jwPKpTQ1Qf7mVm-5uocI-2DtuN&sz=w1200" alt="Nhà gái"><h4>NHÀ GÁI</h4><p>Tiệc thân mật bạn bè · 17:00 ngày 19/09/2026</p><p>Đón khách & tiệc cưới · 08:30 ngày 20/09/2026</p><p><b>LỄ VU QUY · 10:30</b></p><div class="event-date"><span>CHỦ NHẬT</span><strong>20/09</strong><span>2026</span></div><p>Xóm Trường Giang, Thôn Xuân Ấng, Xã Hà Nam, Hải Phòng</p><a class="pill" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.88641929626465,106.46361541748047">Xem Google Maps</a></article>
+  <article class="event reveal from-right"><img src="https://drive.google.com/thumbnail?id=12CwG6BZzJE1N0O6gYDYNg9mlcJCv-jjb&sz=w1200" alt="Nhà trai"><h4>NHÀ TRAI</h4><p>Đón khách & tiệc cưới · 08:30 ngày 20/09/2026</p><p><b>LỄ THÀNH HÔN · 12:30</b></p><div class="event-date"><span>CHỦ NHẬT</span><strong>20/09</strong><span>2026</span></div><p>Xóm 6, Thôn Vị Dương Đoài, Xã Bắc Thái Ninh, tỉnh Hưng Yên</p><a class="pill" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=20.517039309817367,106.49241291506051">Xem Google Maps</a></article>
+</div></div></section>
+<section class="countdown-rsvp section" id="rsvp"><div class="count-bg"></div><div class="count-overlay"></div><div class="count-content"><p class="hand reveal from-top">Đếm ngược thời gian</p><h3 class="reveal zoom">Save the date</h3><div class="countdown reveal zoom"><div><span>Ngày</span><strong id="days">00</strong></div><div><span>Giờ</span><strong id="hours">00</strong></div><div><span>Phút</span><strong id="minutes">00</strong></div><div><span>Giây</span><strong id="seconds">00</strong></div></div>
+<form id="rsvpForm" class="rsvp-card reveal from-bottom"><h4>Xác nhận tham dự</h4><p>Xác nhận tham dự để Thắng & Yến đón tiếp bạn chu đáo hơn.</p><div class="form-grid"><input name="name" required placeholder="Tên của bạn"><select name="side" required><option value="">Bạn là khách của...</option><option>Nhà trai</option><option>Nhà gái</option><option>Bạn chung</option></select><select name="attendance" required><option value="">Bạn sẽ tham dự?</option><option>Tham dự</option><option>Không tham dự</option></select><input name="guests" type="number" min="1" max="10" value="1" placeholder="Số người"></div><textarea name="message" rows="4" placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea><input type="hidden" id="guestHidden" name="guest"><button class="pill solid" type="submit">Gửi xác nhận</button><p id="formStatus" class="form-status"></p></form></div></section>
+<section class="gift section" id="gift"><div class="gift-box reveal zoom"><h3>Gửi quà đến cô dâu và chú rể</h3><p>Sự hiện diện và lời chúc của bạn đã là món quà quý giá.</p><button id="openGift" class="gift-icon" aria-label="Mở hộp mừng cưới">🎁</button></div></section>
+<footer class="footer"><p class="hand">Thank you</p><h3>Thắng <span>&</span> Yến</h3><p>20 · 09 · 2026</p></footer>
+</main>
+<div id="giftModal" class="modal" aria-hidden="true"><div class="modal-panel"><button id="closeGift" class="modal-close">×</button><h3>Hộp mừng cưới</h3><p>Cảm ơn tình cảm bạn dành cho Thắng & Yến</p><div class="qr-grid"><div><h4>Mừng cưới đến chú rể</h4><img src="https://img.vietqr.io/image/VCB-0211000547039-compact2.png?accountName=BUI%20THE%20THANG" alt="QR chú rể"><strong>0211000547039</strong><small>Vietcombank · BÙI THẾ THẮNG</small></div><div><h4>Mừng cưới đến cô dâu</h4><img src="https://img.vietqr.io/image/AGRIBANK-8888354529002-compact2.png?accountName=NGUYEN%20THI%20YEN" alt="QR cô dâu"><strong>8888354529002</strong><small>Agribank · NGUYỄN THỊ YẾN</small></div></div></div></div>
+<div id="lightbox" class="modal lightbox" aria-hidden="true"><button id="closeLightbox" class="modal-close">×</button><img id="lightboxImage" alt="Ảnh cưới Thắng Yến"></div>
+<script src="app.js"></script></body></html>
