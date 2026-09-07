@@ -1,4 +1,5 @@
 const CONFIG={weddingAt:'2026-09-20T08:30:00+07:00',rsvpEndpoint:'https://script.google.com/macros/s/AKfycbziaTlCWRiEDyZ24u1TwWxemR9BbI6dnqJP7hYaNVXw1Y0Nt3qfJheZViyRKYzC5DS6/exec'};
+const modalCss=document.createElement('link');modalCss.rel='stylesheet';modalCss.href='https://cdn.jsdelivr.net/gh/hoangnguyenhung1998/thangyen-wedding@b15ae95f62a3e5d55617e8126c007020d09a56d0/fix.css';document.head.appendChild(modalCss);
 const galleryIds=['1lWKyAkxKc9aIBl_8am5EA6oEMnZC7833','1JJ88r6-3YrbioTjVG-7F5ltFUM5ftwaz','11oAWP4WYIKnN0SasgAwnKLohF5vbxEeQ','14Ej33bqh0q_Aq6xYH7ahs8mTsJQhpBX9','1b6biMgF8qbE3yXRb3FCJdZxcnoubo4CV','1fHn42I1I8ZHF-ipb43GMkVemZaka5nXB','18Lql5KmhlSBVUFh5CYVX4TWIzC0OYqrt','1-1ZkcpQWgrGmAuqq6Kz7fGrkFnLMJcoz','1YFI_EqbpEyFlSb2PY2KB4cer8oUvq7KG','1FOJyyztPvAT4D3jxXrm6ZPapi-AMAkaX','1qrxCkeWRRK36R0lFnLj4OKcgkBQJOVrb','1ZuzBkr-f6-Mvggw8B9nFwayRg5JxLVGl','1gU37VdzL509T2CAZDvqrrAozd-TueL1m'];
 const $=s=>document.querySelector(s);const opening=$('#opening'),site=$('#site'),openBtn=$('#openInvitation'),music=$('#bgMusic'),musicBtn=$('#musicButton'),musicIcon=$('#musicIcon');let observer;let musicPlaying=false;let visibleCount=8;
 function setMusicUi(playing){musicPlaying=playing;musicBtn?.classList.toggle('is-playing',playing);musicBtn?.setAttribute('aria-label',playing?'Tắt nhạc':'Bật nhạc');if(musicIcon)musicIcon.textContent=playing?'♫':'♪';}
@@ -16,3 +17,56 @@ const gallery=$('#gallery'),showMore=$('#showMore'),lightbox=$('#lightbox'),ligh
 const heartField=$('#heartField');function spawnHeart(){if(document.hidden||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const h=document.createElement('span');h.className='floating-heart';h.textContent=Math.random()>.38?'♡':'♥';h.style.left=`${Math.random()*96}%`;h.style.fontSize=`${15+Math.random()*20}px`;h.style.animationDuration=`${7+Math.random()*6}s`;h.style.setProperty('--drift',`${-70+Math.random()*140}px`);heartField.appendChild(h);setTimeout(()=>h.remove(),13500)}setInterval(spawnHeart,1500);for(let i=0;i<4;i++)setTimeout(spawnHeart,i*550);
 const form=$('#rsvpForm'),status=$('#formStatus');form.addEventListener('submit',async e=>{e.preventDefault();const payload=Object.fromEntries(new FormData(form).entries());payload.createdAt=new Date().toISOString();payload.source='thangyen-wedding.vercel.app';if(!CONFIG.rsvpEndpoint){localStorage.setItem('thangyen-rsvp-demo',JSON.stringify(payload));status.textContent='Đã lưu xác nhận trên thiết bị.';return}status.textContent='Đang gửi xác nhận...';try{await fetch(CONFIG.rsvpEndpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});status.textContent='Cảm ơn bạn! Thắng & Yến đã nhận được xác nhận ♥';form.reset()}catch(e){status.textContent='Chưa gửi được. Vui lòng thử lại sau.'}});
 const giftModal=$('#giftModal');$('#openGift').addEventListener('click',()=>{giftModal.classList.add('is-open');giftModal.setAttribute('aria-hidden','false')});$('#closeGift').addEventListener('click',()=>giftModal.classList.remove('is-open'));giftModal.addEventListener('click',e=>{if(e.target===giftModal)giftModal.classList.remove('is-open')});$('#closeLightbox').addEventListener('click',()=>lightbox.classList.remove('is-open'));lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.classList.remove('is-open')});document.addEventListener('keydown',e=>{if(e.key==='Escape'){giftModal.classList.remove('is-open');lightbox.classList.remove('is-open')}});
+
+const giftPanel=giftModal?.querySelector('.modal-panel');
+if(giftPanel){
+  const groomQr='https://img.vietqr.io/image/VCB-0211000547039-qr_only.png?accountName=BUI%20THE%20THANG';
+  const brideQr='https://img.vietqr.io/image/AGRIBANK-8888354529002-qr_only.png?accountName=NGUYEN%20THI%20YEN';
+  giftPanel.innerHTML=`
+    <button id="closeGift" class="modal-close" aria-label="Đóng">×</button>
+    <h3>Hộp mừng cưới</h3>
+    <div class="gift-divider"><span>♡</span></div>
+    <p class="gift-subtitle">Cảm ơn tình cảm bạn dành cho Thắng & Yến</p>
+    <div class="qr-grid">
+      <div>
+        <h4>Mừng cưới đến chú rể</h4>
+        <div class="qr-frame"><img id="groomQr" src="${groomQr}" alt="QR Vietcombank chú rể"></div>
+        <strong class="account-number">0211000547039</strong>
+        <small class="account-meta">Vietcombank · BÙI THẾ THẮNG</small>
+        <div class="gift-actions">
+          <button class="gift-action download-qr" data-url="${groomQr}" data-file="QR-Bui-The-Thang.png">⇩ Tải ảnh QR</button>
+          <button class="gift-action copy-account" data-account="0211000547039">▣ Copy STK</button>
+        </div>
+      </div>
+      <div>
+        <h4>Mừng cưới đến cô dâu</h4>
+        <div class="qr-frame"><img id="brideQr" src="${brideQr}" alt="QR Agribank cô dâu"></div>
+        <strong class="account-number">8888354529002</strong>
+        <small class="account-meta">Agribank · NGUYỄN THỊ YẾN</small>
+        <div class="gift-actions">
+          <button class="gift-action download-qr" data-url="${brideQr}" data-file="QR-Nguyen-Thi-Yen.png">⇩ Tải ảnh QR</button>
+          <button class="gift-action copy-account" data-account="8888354529002">▣ Copy STK</button>
+        </div>
+      </div>
+    </div>
+    <p class="gift-thanks">Trân trọng cảm ơn! ♡</p>`;
+
+  $('#closeGift')?.addEventListener('click',()=>giftModal.classList.remove('is-open'));
+
+  document.querySelectorAll('.copy-account').forEach(btn=>btn.addEventListener('click',async()=>{
+    const account=btn.dataset.account||'';
+    try{
+      if(navigator.clipboard?.writeText) await navigator.clipboard.writeText(account);
+      else{const ta=document.createElement('textarea');ta.value=account;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+      const old=btn.textContent;btn.textContent='✓ Đã copy STK';btn.classList.add('is-copied');setTimeout(()=>{btn.textContent=old;btn.classList.remove('is-copied')},1800);
+    }catch(_){alert(`Số tài khoản: ${account}`);}
+  }));
+
+  document.querySelectorAll('.download-qr').forEach(btn=>btn.addEventListener('click',async()=>{
+    const url=btn.dataset.url,file=btn.dataset.file||'QR-cuoi.png';
+    try{
+      const res=await fetch(url,{mode:'cors'});if(!res.ok)throw new Error('download failed');
+      const blob=await res.blob();const objectUrl=URL.createObjectURL(blob);const a=document.createElement('a');a.href=objectUrl;a.download=file;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),1500);
+    }catch(_){window.open(url,'_blank','noopener');}
+  }));
+}
