@@ -29,6 +29,27 @@
 .hero-copy.hero-lines-visible>.hand.small{opacity:1;transform:none;transition-delay:.72s}
 .hero-copy.hero-lines-visible .place{opacity:1;transform:none;transition-delay:.86s}
 
+/* Wedding gift modal */
+#giftModal{padding:18px;background:rgba(29,45,57,.58);backdrop-filter:blur(4px)}
+#giftModal .modal-panel{width:min(1160px,100%);max-height:94vh;padding:44px 46px 38px;border-radius:24px;background:radial-gradient(circle at 5% 8%,rgba(213,239,253,.8),transparent 28%),radial-gradient(circle at 96% 92%,rgba(213,239,253,.8),transparent 30%),linear-gradient(135deg,#fff 0%,#f3fbff 100%);box-shadow:0 24px 80px rgba(18,97,145,.18)}
+#giftModal .modal-panel h3{font-family:"Playfair Display",serif;font-size:clamp(42px,5vw,64px);color:#1188cf;line-height:1;margin-bottom:8px}
+#giftModal .gift-subtitle{margin:0 0 8px;font-size:16px;color:#2c82b6}
+#giftModal .gift-divider{display:flex;align-items:center;justify-content:center;gap:12px;color:#1188cf;font-size:28px;margin:2px 0 22px}
+#giftModal .gift-divider:before,#giftModal .gift-divider:after{content:"";width:80px;height:1px;background:#7cc5ee}
+#giftModal .qr-grid{gap:42px;margin-top:8px}
+#giftModal .qr-grid>div{padding:8px 16px 12px}
+#giftModal .qr-grid h4{font-size:19px;margin:0 0 14px;color:#1188cf}
+#giftModal .qr-frame{width:min(330px,100%);margin:0 auto 12px;padding:16px;background:#fff;border:1px solid #d5ecf9;border-radius:10px;box-shadow:0 8px 26px rgba(17,136,207,.06)}
+#giftModal .qr-frame img{width:100%;margin:0 auto;aspect-ratio:1/1;object-fit:contain}
+#giftModal .account-number{display:block;font-size:20px;color:#1188cf;letter-spacing:.02em;margin-top:10px}
+#giftModal .account-meta{display:block;font-size:14px;color:#2181b7;margin-top:3px}
+#giftModal .gift-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:17px}
+#giftModal .gift-action{border:0;border-radius:999px;background:#1188cf;color:#fff;padding:12px 22px;min-width:145px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;text-decoration:none}
+#giftModal .gift-action:hover{transform:translateY(-2px);background:#0c7fc4}
+#giftModal .gift-action.is-copied{background:#23a66f}
+#giftModal .gift-thanks{font-family:"Alex Brush",cursive;color:#1188cf;font-size:38px;margin:18px 0 0}
+#giftModal .modal-close{z-index:2;width:42px;height:42px;border-radius:50%;font-size:30px;line-height:1;display:grid;place-items:center;right:16px;top:14px}
+
 @media(max-width:900px){.gallery-grid{columns:2;column-gap:14px}}
 @media(max-width:560px){
   .photo-stack{min-height:500px!important}
@@ -43,6 +64,13 @@
   .hero-copy h2 .amp{font-size:.88em!important}
   .gallery-grid{columns:2;column-gap:10px}
   .gallery-item,.gallery-style-0,.gallery-style-1,.gallery-style-2,.gallery-style-3,.gallery-style-4{margin-bottom:10px!important}
+  #giftModal{padding:8px}
+  #giftModal .modal-panel{padding:40px 12px 28px;border-radius:18px}
+  #giftModal .qr-grid{grid-template-columns:1fr!important;gap:24px}
+  #giftModal .qr-grid>div{padding:0 4px}
+  #giftModal .qr-frame{width:min(285px,88vw);padding:12px}
+  #giftModal .gift-action{min-width:130px;padding:11px 16px;font-size:14px}
+  #giftModal .gift-thanks{font-size:32px}
 }
 @media(max-width:380px){.hero-copy h2{font-size:30px!important}.hero-copy h2 .name-line{letter-spacing:-.02em!important}}
 @media(prefers-reduced-motion:reduce){.hero-copy .blue-flower,.hero-copy>.hand,.hero-copy h2,.hero-copy .date-grid,.hero-copy .place{opacity:1!important;transform:none!important;transition:none!important}.photo-card{transition:none!important}}
