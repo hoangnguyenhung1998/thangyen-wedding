@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/assets/og-facebook.jpg",
+      "destination": "https://raw.githubusercontent.com/hoangnguyenhung1998/thangyen-wedding/7745a0d05172a015874de6e44a0c3cea2f94d1f6/assets/og-facebook.jpg"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/og-facebook.jpg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" }
+      ]
+    }
+  ]
+}
